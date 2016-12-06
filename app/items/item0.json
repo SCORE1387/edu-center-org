@@ -1,0 +1,14 @@
+{
+    "id": "item0",
+    "name": "First Item",
+    "description": "First Item Description.",
+    "textFeature": "First Item Feature",
+    "booleanFeature": true,
+    "images": [
+        "img/items/item0.0.jpg",
+        "img/items/item0.1.jpg",
+        "img/items/item0.2.jpg",
+        "img/items/item0.3.jpg",
+        "img/items/item0.4.jpg"
+    ]
+ }
