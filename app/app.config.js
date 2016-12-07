@@ -14,6 +14,6 @@ angular.
         when('/dashboard', {
           template: '<dashboard></dashboard>'
         }).
-        otherwise('/students');
+        otherwise('/dashboard');
     }
   ]);

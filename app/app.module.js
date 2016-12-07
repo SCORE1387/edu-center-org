@@ -2,6 +2,7 @@
 
 var app = angular.module('EduCenterApp', [
     'ngRoute',
+    'dashboard',
     'students'
 ]);
 
