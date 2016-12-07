@@ -5,3 +5,4 @@ tmp
 .idea
 .DS_Store
 app/vendor/
+app/dist/
