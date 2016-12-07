@@ -24,11 +24,11 @@
 <div class="container body">
     <div class="main_container">
         <!-- side bar -->
-        <div ng-include="'templates/sidebar.html'"></div>
+        <div ng-include="'theme/sidebar/sidebar.html'"></div>
         <!-- /side bar -->
 
         <!-- top navigation -->
-        <div ng-include="'templates/top.html'"></div>
+        <div ng-include="'theme/header/header.html'"></div>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -36,7 +36,7 @@
         <!-- /page content -->
 
         <!-- footer content -->
-        <div ng-include="'templates/footer.html'"></div>
+        <div ng-include="'theme/footer/footer.html'"></div>
         <!-- /footer content -->
     </div>
 </div>
@@ -49,13 +49,16 @@
 <script src="pages/students/students.module.js"></script>
 <script src="pages/students/students.component.js"></script>
 
+<script src="theme/sidebar/sidebar.controller.js"></script>
+<script src="theme/header/header.controller.js"></script>
+
 <!-- jQuery -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!-- Custom Scripts -->
-<script src="dist/js/custom.min.js"></script>
+<script src="theme/js/helpers/smartresize.js"></script>
 
 </body>
 </html>
