@@ -58,8 +58,6 @@ angular.module('EduCenterApp').controller('SidebarController', ['$location', fun
         });
 
         // check active menu
-        console.log('path = "' + $location.path() + '"');
-        console.log($SIDEBAR_MENU.find('a[href="#!' + $location.path() + '"]'));
         $SIDEBAR_MENU.find('a[href="#!' + $location.path() + '"]').parent('li').addClass('current-page');
 
         $SIDEBAR_MENU.find('a[href="#!' + $location.path() + '"]').parent('li').addClass('current-page')
