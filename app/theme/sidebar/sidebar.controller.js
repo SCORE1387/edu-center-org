@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('EduCenterApp').controller('SidebarController', function SidebarController() {
-    var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
-        $BODY = $('body'),
+angular.module('EduCenterApp').controller('SidebarController', ['$location', function SidebarController($location) {
+    var $BODY = $('body'),
         $SIDEBAR_MENU = $('#sidebar-menu'),
         $SIDEBAR_FOOTER = $('.sidebar-footer'),
         $LEFT_COL = $('.left_col'),
@@ -27,12 +26,14 @@ angular.module('EduCenterApp').controller('SidebarController', function SidebarC
             $RIGHT_COL.css('min-height', contentHeight);
         };
 
-        $SIDEBAR_MENU.find('a').on('click', function(ev) {
-            var $li = $(this).parent();
+        $SIDEBAR_MENU.find('a').on('click', function () {
+            var $a = $(this);
+
+            var $li = $a.parent();
 
             if ($li.is('.active')) {
                 $li.removeClass('active active-sm');
-                $('ul:first', $li).slideUp(function() {
+                $('ul:first', $li).slideUp(function () {
                     setContentHeight();
                 });
             } else {
@@ -44,23 +45,29 @@ angular.module('EduCenterApp').controller('SidebarController', function SidebarC
 
                 $li.addClass('active');
 
-                $('ul:first', $li).slideDown(function() {
+                $('ul:first', $li).slideDown(function () {
                     setContentHeight();
                 });
             }
         });
 
-        // check active menu
-        $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
+        $SIDEBAR_MENU.find('a[href]').on('click', function () {
+            var $li = $(this).parent('li');
+            $li.addClass('current-page active');
+            $li.siblings().removeClass('current-page active');
+        });
 
-        $SIDEBAR_MENU.find('a').filter(function () {
-            return this.href == CURRENT_URL;
-        }).parent('li').addClass('current-page').parents('ul').slideDown(function() {
-            setContentHeight();
-        }).parent().addClass('active');
+        // check active menu
+        console.log('path = "' + $location.path() + '"');
+        console.log($SIDEBAR_MENU.find('a[href="#!' + $location.path() + '"]'));
+        $SIDEBAR_MENU.find('a[href="#!' + $location.path() + '"]').parent('li').addClass('current-page');
+
+        $SIDEBAR_MENU.find('a[href="#!' + $location.path() + '"]').parent('li').addClass('current-page')
+            .parents('ul').slideDown(function () { setContentHeight(); })
+            .parent().addClass('active');
 
         // recompute content when resizing
-        $(window).smartresize(function(){
+        $(window).smartresize(function () {
             setContentHeight();
         });
 
@@ -71,18 +78,18 @@ angular.module('EduCenterApp').controller('SidebarController', function SidebarC
             $('.menu_fixed').mCustomScrollbar({
                 autoHideScrollbar: true,
                 theme: 'minimal',
-                mouseWheel:{ preventDefault: true }
+                mouseWheel: {preventDefault: true}
             });
         }
 
-        $('.collapse-link').on('click', function() {
+        $('.collapse-link').on('click', function () {
             var $BOX_PANEL = $(this).closest('.x_panel'),
                 $ICON = $(this).find('i'),
                 $BOX_CONTENT = $BOX_PANEL.find('.x_content');
 
             // fix for some div with hardcoded fix class
             if ($BOX_PANEL.attr('style')) {
-                $BOX_CONTENT.slideToggle(200, function(){
+                $BOX_CONTENT.slideToggle(200, function () {
                     $BOX_PANEL.removeAttr('style');
                 });
             } else {
@@ -99,4 +106,4 @@ angular.module('EduCenterApp').controller('SidebarController', function SidebarC
             $BOX_PANEL.remove();
         });
     });
-});
+}]);
