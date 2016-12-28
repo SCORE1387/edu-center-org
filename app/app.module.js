@@ -3,7 +3,8 @@
 var app = angular.module('EduCenterApp', [
     'ngRoute',
     'dashboard',
-    'students'
+    'students',
+    'lectures'
 ]);
 
 app.controller('MainController', ['$scope', function MainController($scope) {
